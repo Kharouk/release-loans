@@ -1,7 +1,6 @@
-const Express = require("express");
-const ExpressGraphQL = require("express-graphql");
-const Mongoose = require("mongoose");
-const bodyParser = require("body-parser");
+const express = require("express")
+const ExpressGraphQL = require("express-graphql")
+const bodyParser = require("body-parser")
 const {
   GraphQLID,
   GraphQLString,
@@ -9,44 +8,40 @@ const {
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLSchema
-} = require("graphql");
-const db = require("./database");
+} = require("graphql")
 
-const app = Express();
-app.use(bodyParser.json);
+const app = express()
 
-const Schema = Mongoose.Schema;
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
-const userSchema = new Schema({
-  firstName: { type: String, required: true },
-  lastName: { type: String, required: true },
-  inHouse: { type: Boolean, required: true }
-});
-
-const UserModel = Mongoose.model("User", userSchema);
+const db = require("./database")
+const UserModel = require("./models/User")
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
-});
+  res.sendFile(__dirname + "/index.html")
+  // res.json({ message: "yo" })
+})
 
-app.post("/users", (res, req) => {
-  console.log(req.body);
+app.post("/users", (req, res) => {
+  console.log(req.body)
   const newUser = new UserModel({
-    firstName: req.body.first,
-    lastName: req.body.last,
-    inHouse: !!req.body.house
-  });
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    stillInside: !!req.body.stillInside
+  })
 
   newUser.save((err, result) => {
     if (err) {
-      console.log("Save failed: ", err);
+      console.log("Save failed: ", err)
+    } else {
+      console.log("You successfully added a user: ", result)
     }
-    console.log("You successfully added a user: ", result);
-  });
+  })
 
-  res.redirect("/");
-});
+  res.redirect("/")
+})
 
 app.listen(3333, () => {
-  console.log("Server is up and running.");
-});
+  console.log("Server is up and running.")
+})

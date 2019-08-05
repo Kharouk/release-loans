@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Let Out Loans</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Let Out Loans</title>
-</head>
+  <body>
+    <h1>Tester</h1>
 
-<body>
-  <h1>Tester</h1>
+    <div>Enter items</div>
 
-  <div>Enter items</div>
+    <form action="/users" method="POST">
+      <input type="text" placeholder="First Name" name="firstName" />
+      <input type="text" placeholder="Last Name" name="lastName" />
+      <input type="checkbox" name="stillInside" />
+      <button type="submit">Submit</button>
+    </form>
 
-  <form action="/users" method="POST">
-    <input type="text" placeholder="First Name" name="first">
-    <input type="text" placeholder="Last Name" name="last">
-    <input type="checkbox" name="house">
-    <button type="submit">Submit</button>
-  </form>
+    <hr />
 
-  <hr>
-
-  <h2>Results</h2>
-  <div>
-    <a href="/graphql">Graphql Results</a>
-  </div>
-</body>
-
+    <h2>Results</h2>
+    <div>
+      <a href="/graphql">Graphql Results</a>
+    </div>
+  </body>
 </html>
